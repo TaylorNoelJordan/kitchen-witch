@@ -6,17 +6,20 @@ class RecipeDisplay extends Component {
     constructor() {
         super();
         this.state = {
-            recipes: []
+            recipes: [],
+            isLoading: true
         };
     }
 
     componentDidMount() {
         fetchRecipes()
         .then(recipes => this.setState({ recipes }))
+        .then(this.setState({isLoading: false}))
         .catch(error => console.log(error))
     }
 
     render() {
+        const loadingGif = `https://media2.giphy.com/media/11FuEnXyGsXFba/source.gif`
         const { recipes } = this.state;
         const recipeThumbnails = recipes.map(recipe => {
             const { name, id, description, cook_time, video, img, yields } = recipe;
@@ -34,7 +37,7 @@ class RecipeDisplay extends Component {
         })
         return(
             <section className="recipe-display">
-                <h2>Recipes Go Here</h2>
+            {this.state.isLoading && <img src={loadingGif} alt='loading gif'/>}
                 {recipeThumbnails}
             </section>
         )
