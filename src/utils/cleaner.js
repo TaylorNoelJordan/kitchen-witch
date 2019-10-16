@@ -3,17 +3,16 @@ const cleanRecipeData = recipeData => {
         return {
             id: recipe.id,
             name: recipe.name,
-            nutrition: recipe.nutrition.calories,
-            video: recipe.original_video_url,
+            video: recipe.video_url,
             img: recipe.thumbnail_url,
             yields: recipe.yields,
             cook_time: recipe.cook_time_minutes,
             description: recipe.description,
-            instructions: instructions.map(item => {
-                return {
-                    instruction: item.display_text
-                }
-            })
+            // instructions: recipe.instructions.map(item => {
+            //     return {
+            //         instruction: item.display_text
+            //     }
+            // })
         }
     })
 }

@@ -1,1 +1,0 @@
-import cleanRecipeData from './cleaner';
