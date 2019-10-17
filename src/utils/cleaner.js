@@ -7,7 +7,7 @@ const cleanRecipeData = recipeData => {
             img: recipe.thumbnail_url,
             yields: recipe.yields,
             cook_time: recipe.cook_time_minutes,
-            description: recipe.description,
+            description: recipe.description
             // instructions: recipe.instructions.map(item => {
             //     return {
             //         instruction: item.display_text

@@ -13,8 +13,6 @@ export const fetchRecipes = async () => {
 
     const response = await fetch(url, options);
     const data = await response.json()
-    console.log(data.results)
     const recipes = await cleanRecipeData(data.results);
-    console.log(recipes)
     return recipes
 }

@@ -18,6 +18,7 @@ class SearchBar extends Component {
                     value={this.state.searchQuery}
                     // onChange={this.handleChange(e)}
                 />
+                <button>Search</button>
             </form>
         )
     }

@@ -1,26 +1,9 @@
-import React, { Component } from 'react';
-import { fetchRecipes } from '../utils/apiCalls';
-import RecipeTile from './RecipeTile'
+import React from 'react';
+import RecipeTile from './RecipeTile';
+import { loadRecipes, hasErrored, loadComplete } from '../actions/index';
+import { connect } from 'react-redux';
 
-class RecipeDisplay extends Component {
-    constructor() {
-        super();
-        this.state = {
-            recipes: [],
-            isLoading: true
-        };
-    }
-
-    componentDidMount() {
-        fetchRecipes()
-        .then(recipes => this.setState({ recipes }))
-        .then(this.setState({isLoading: false}))
-        .catch(error => console.log(error))
-    }
-
-    render() {
-        const loadingGif = `https://media2.giphy.com/media/11FuEnXyGsXFba/source.gif`
-        const { recipes } = this.state;
+const RecipeDisplay = ({ recipes }) => {
         const recipeThumbnails = recipes.map(recipe => {
             const { name, id, description, cook_time, video, img, yields } = recipe;
             return (
@@ -37,11 +20,21 @@ class RecipeDisplay extends Component {
         })
         return(
             <section className="recipe-display">
-            {this.state.isLoading && <img src={loadingGif} alt='loading gif'/>}
                 {recipeThumbnails}
             </section>
         )
-    }
 }
 
-export default RecipeDisplay;
+const mapStateToProps = state => ({
+    recipes: state.recipes,
+    error: state.error,
+    loading: state.loading
+});
+
+const mapDispatchToProps = dispatch => ({
+    loadComplete: () => dispatch(loadComplete()),
+    loadRecipes: recipes => dispatch(loadRecipes(recipes)),
+    hasErrored: error => dispatch(hasErrored(error))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeDisplay);

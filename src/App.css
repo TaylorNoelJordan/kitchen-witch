@@ -6,6 +6,11 @@
   height: 40vmin;
 }
 
+.header {
+  color: aliceblue;
+  text-align: center; 
+}
+
 /* .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -22,6 +27,7 @@
 }
 
 .recipe-tile {
+  background-color: aliceblue;
   border: solid 1px #09d3ac;
   border-radius: 15px;
   display: flex;

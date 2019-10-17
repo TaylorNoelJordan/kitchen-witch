@@ -9,6 +9,7 @@ import rootReducer from './reducers/index'
 // import * as serviceWorker from './serviceWorker';
 
 const store = createStore(rootReducer, composeWithDevTools());
+
 const application = (
     <Provider store={store}>
         <App />
